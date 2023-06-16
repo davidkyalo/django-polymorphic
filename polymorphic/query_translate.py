@@ -60,6 +60,8 @@ def translate_polymorphic_filter_definitions_in_kwargs(
 def translate_polymorphic_Q_object(queryset_model, potential_q_object, using=DEFAULT_DB_ALIAS):
     def tree_node_correct_field_specs(my_model, node):
         "process all children of this Q node"
+        if not hasattr(node, 'children'):
+            return
         for i in range(len(node.children)):
             child = node.children[i]
 
